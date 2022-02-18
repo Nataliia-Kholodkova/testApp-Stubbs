@@ -1,16 +1,27 @@
 import React from 'react';
 
+import styles from './Messages.module.css';
+
 function Message({ message, deleteHandler }) {
   const { text, date, id } = message;
   return (
-    <div
+    <li
+      className={styles.message}
       onClick={() => {
         deleteHandler(id);
       }}
     >
-      <p>{text}</p>
-      <time>{date.toLocaleString('eu-ua', { hour: '2-digit', minute: '2-digit' })}</time>
-    </div>
+      <p className={styles.text}>{text}</p>
+      <p className={styles.time}>
+        <time>
+          {date.toLocaleString('ua-ua', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+          })}
+        </time>
+      </p>
+    </li>
   );
 }
 
