@@ -10,6 +10,7 @@ import styles from './Input.module.css';
 const Input = () => {
   const dispatch = useDispatch();
   const [currentValue, setCurrentValue] = useState('');
+
   const handleSumbit = () => {
     const date = new Date();
     const id = date.getTime() + Math.round(Math.random() * 10);
@@ -26,21 +27,24 @@ const Input = () => {
 
   return (
     <section className={styles.section}>
-      <input
-        type="text"
-        onChange={(event) => handleChange(event)}
-        placeholder={'Text me'}
-        className={styles.input}
-        value={currentValue}
-      />
-      <button
-        type="button"
-        onClick={handleSumbit}
-        value="Send"
-        className={styles.button}
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          handleSumbit();
+        }}
+        className={styles.form}
       >
-        <Icon />
-      </button>
+        <input
+          type="text"
+          onChange={(event) => handleChange(event)}
+          placeholder={'Text me'}
+          className={styles.input}
+          value={currentValue}
+        />
+        <button type="submit" value="Send" className={styles.button}>
+          <Icon />
+        </button>
+      </form>
     </section>
   );
 };

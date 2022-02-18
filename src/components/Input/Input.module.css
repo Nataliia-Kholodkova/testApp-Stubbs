@@ -1,5 +1,8 @@
 .section {
   margin-top: auto;
+}
+
+.form {
   padding: 16px 10px;
   display: flex;
   justify-content: space-between;
